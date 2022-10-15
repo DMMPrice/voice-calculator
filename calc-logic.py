@@ -1,13 +1,12 @@
-# import pyaudio as py
-# print("Your py audio version is: ", py.__version__)
-
 import speech_recognition as s_r
 import operator
 
-# Checking the version of speech recognition
-print("Your speech_recognition version is: " + s_r.__version__)
 r = s_r.Recognizer()
 my_mic_device = s_r.Microphone(device_index=1)
+
+# print all the microphones connected to your machine
+# print(s_r.Microphone.list_microphone_names())
+
 with my_mic_device as source:
     print("Say what you want to calculate, example: 3 plus 3")
     r.adjust_for_ambient_noise(source)
