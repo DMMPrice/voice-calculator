@@ -29,27 +29,32 @@ with my_mic_device as source:
     # print(type(my_string))
 
 my_string = my_string.lower()
-print(my_string)
-print(my_string.replace("into", "*"))
+
+
+# print(my_string)
+# print(my_string.replace("into", "*"))
 # print('The changed string is')
 # changed_str = operator_re(my_string)
 # print(changed_str)
 
-# def get_operator_fn(op):
-#     return {
-#         '+': operator.add,
-#         '-': operator.sub,
-#         'into': operator.mul,
-#         'divided': operator.__truediv__,
-#         'Mod': operator.mod,
-#         'mod': operator.mod,
-#         '^': operator.xor,
-#     }[op]
-#
-#
-# def eval_binary_expr(op1, oper, op2):
-#     op1, op2 = int(op1), int(op2)
-#     return get_operator_fn(oper)(op1, op2)
-#
-#
-# print(eval_binary_expr(*(my_string.split())))
+def get_operator_fn(op):
+    return {
+        '+': operator.add,
+        '-': operator.sub,
+        'into': operator.mul,
+        'multiplied by': operator.mul,
+        'x': operator.mul,
+        'divided': operator.__truediv__,
+        'by': operator.__truediv__,
+        'Mod': operator.mod,
+        'mod': operator.mod,
+        '^': operator.xor,
+    }[op]
+
+
+def eval_binary_expr(op1, oper, op2):
+    op1, op2 = int(op1), int(op2)
+    return get_operator_fn(oper)(op1, op2)
+
+
+print(eval_binary_expr(*(my_string.split())))
