@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import TOP, LEFT
 from tkinter.ttk import *
+from calc_logic import main_function as main
 
 r = tk.Tk()
 
@@ -18,7 +19,7 @@ Label(r, text='Voice Button', font=('Verdana', 12)).pack(side=TOP, pady=10)
 photo = tk.PhotoImage(file="m1.png")
 # Resizing image to fit on button
 photoimage = photo.subsample(3, 3)
-Button(r, text='Click Me !', image=photoimage, compound=LEFT).pack(side=TOP)
+Button(r, text='Click Me !', image=photoimage, compound=LEFT, command=main).pack(side=TOP)
 
 Button(r, text='Quit', command=r.destroy).pack(side=TOP, pady=10)
 r.mainloop()
