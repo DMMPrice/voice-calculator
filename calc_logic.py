@@ -7,6 +7,10 @@ def operator_re(stack_op):
             stack_op.insert(i, '**')
             stack_op.remove('to the power')
     for i in range(0, len(stack_op)):
+        if stack_op[i] == "by":
+            stack_op.insert(i, '/')
+            stack_op.remove('by')
+    for i in range(0, len(stack_op)):
         if stack_op[i] == "into":
             stack_op.insert(i, '*')
             stack_op.remove('into')
