@@ -24,5 +24,5 @@ Good evening everyone! I think all of you might have used calculators. Of course
 - Helps those who have problems with time.
 - Wants to test-out voice recognition technology
 
-### DiaAdvantages
+### Disadvantages
 - It does not always work across all operating systems. Noisy environments, accents and multiple speakers may degrade results. 
