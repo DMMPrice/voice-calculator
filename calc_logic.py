@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from infix_eval import evaluate as ev
 
 
@@ -46,7 +47,7 @@ def voice_input():
     r = s_r.Recognizer()
     my_mic_device = s_r.Microphone(device_index=1)
     with my_mic_device as source:
-        print("Say what you want to calculate, example: 3 plus 3")
+        #print("Say what you want to calculate, example: 3 plus 3")
         r.adjust_for_ambient_noise(source, duration=0.5)
         audio = r.listen(source)
         my_string = r.recognize_google(audio)
@@ -56,12 +57,16 @@ def voice_input():
 
 def main_function():
     voice = voice_input()
-    print(voice)
+    global xinput
+    xinput = voice
+    # print(voice)
     test_list = voice.split(' ')
     test_list_1 = one_replacement(test_list)
     test_list_2 = operator_re(test_list_1)
     test_str = refine_voice(test_list_2)
-    print(ev(test_str))
+    global xoutput
+    # print(ev(test_str))
+    xoutput = ev(test_str)
 
 
 main_function()
