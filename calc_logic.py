@@ -43,10 +43,10 @@ def voice_input():
     r = s_r.Recognizer()
     my_mic_device = s_r.Microphone(device_index=1)
     with my_mic_device as source:
-        print("Please wait. Calibrating microphone...")
+        # print("Please wait. Calibrating microphone...")
         r.adjust_for_ambient_noise(source, duration=5)
         r.dynamic_energy_threshold = True
-        print("Say what you want to calculate, example: 3 plus 3")
+        # print("Say what you want to calculate, example: 3 plus 3")
         audio = r.listen(source)
         my_string = r.recognize_google(audio)
         # print(type(my_string))
