@@ -1,5 +1,4 @@
-from asyncio.windows_events import NULL
-from infix_eval import evaluate as ev
+import speech_recognition as s_r
 
 
 def operator_re(stack_op):
@@ -43,12 +42,12 @@ def refine_voice(stack_op):
 
 
 def voice_input():
-    import speech_recognition as s_r
     r = s_r.Recognizer()
-    my_mic_device = s_r.Microphone(device_index=1)
+    my_mic_device = s_r.Microphone(device_index=0)
     with my_mic_device as source:
-        #print("Say what you want to calculate, example: 3 plus 3")
-        r.adjust_for_ambient_noise(source, duration=0.5)
+        # print("Say what you want to calculate, example: 3 plus 3")
+        r.adjust_for_ambient_noise(source, duration=2)
+        r.dynamic_energy_threshold = True
         audio = r.listen(source)
         my_string = r.recognize_google(audio)
         # print(type(my_string))
@@ -57,20 +56,15 @@ def voice_input():
 
 def main_function():
     voice = voice_input()
-    global xinput
-    xinput = voice
     # print(voice)
     test_list = voice.split(' ')
     test_list_1 = one_replacement(test_list)
     test_list_2 = operator_re(test_list_1)
     test_str = refine_voice(test_list_2)
-    global xoutput
-    # print(ev(test_str))
-    xoutput = ev(test_str)
+    output_list = [test_str]
+    try:
+        output_list.append(eval(test_str))
+    except:
+        output_list.append("Try Again")
 
-
-main_function()
-
-# test_input = '2 into 4'
-# test_list = test_input.split(' ')
-# # print(test_list)
+    return output_list
