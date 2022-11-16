@@ -6,7 +6,7 @@ r = tk.Tk()
 
 # GUI Configurations
 r.title('Voice Calculator')
-r.resizable(0, 0)  # Remove Resize button
+# r.resizable(0, 0)  # Remove Resize button
 r.geometry('450x700')
 r.config(bg='#470B48')
 r.iconbitmap(r'Voice.ico')
