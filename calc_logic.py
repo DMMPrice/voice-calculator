@@ -3,9 +3,9 @@ import speech_recognition as s_r
 
 def operator_re(stack_op):
     for i in range(0, len(stack_op)):
-        if stack_op[i] == "to the power":
+        if stack_op[i] == "power":
             stack_op.insert(i, '**')
-            stack_op.remove('to the power')
+            stack_op.remove('power')
     for i in range(0, len(stack_op)):
         if stack_op[i] == "by":
             stack_op.insert(i, '/')
@@ -18,6 +18,14 @@ def operator_re(stack_op):
         if stack_op[i] == "x":
             stack_op.insert(i, '*')
             stack_op.remove('x')
+    for i in range(0, len(stack_op)):
+        if stack_op[i] == "mod":
+            stack_op.insert(i, '%')
+            stack_op.remove('mod')        
+    for i in range(0, len(stack_op)): # "into" is sounding "inr to" when input: 5000 * 5000
+        if stack_op[i] == "inr to":
+            stack_op.insert(i, '*')
+            stack_op.remove('inr to')
     return stack_op
 
 
@@ -46,7 +54,7 @@ def voice_input():
     my_mic_device = s_r.Microphone(device_index=0)
     with my_mic_device as source:
         # print("Say what you want to calculate, example: 3 plus 3")
-        r.adjust_for_ambient_noise(source, duration=2)
+        r.adjust_for_ambient_noise(source, duration=0)
         r.dynamic_energy_threshold = True
         audio = r.listen(source)
         my_string = r.recognize_google(audio)
